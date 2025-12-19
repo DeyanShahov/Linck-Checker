@@ -41,6 +41,24 @@ start-link-checker.bat
 
 **Забележка:** `.bat` файлът използва английски текст за избягване на encoding проблеми в конзолата.
 
+### За потребители, които изтеглят проекта от GitHub
+
+Ако изтеглите проекта от GitHub, `node_modules` няма да са включени (това е нормално). Инсталирайте ги така:
+
+```bash
+git clone https://github.com/DeyanShahov/Linck-Checker.git
+cd Linck-Checker
+npm install  # <-- Това инсталира node_modules
+# Просто кликни двукратно - всичко е автоматизирано!
+start-link-checker.bat
+```
+
+**Защо не се качват node_modules в GitHub:**
+- Големи файлове (стотици MB)
+- Локални dependencies за всяка ОС
+- По-бързо качване/сваляне
+- Стандартен подход за Node.js проекти
+
 ### Опция 2: Ръчно стартиране
 
 #### 1. Инсталирай dependencies
