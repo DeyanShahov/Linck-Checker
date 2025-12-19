@@ -19,6 +19,14 @@ DETAILED DESCRIPTION
 - 🎯 **Flexible Checking** - By link types (images, videos, web pages, etc.)
 - 🔒 **Local Security** - All requests through your machine
 
+### 📦 Installation
+
+```bash
+git clone https://github.com/DeyanShahov/Linck-Checker.git
+cd Linck-Checker
+npm install
+```
+
 ### 🚀 Quick Start
 
 #### Option 1: Automatic (Recommended)
@@ -43,4 +51,3 @@ npm start
 - Content managers
 - SEO specialists
 - Web developers
-
