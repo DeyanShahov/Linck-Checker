@@ -1,17 +1,11 @@
-========================================
-GITHUB REPOSITORY DESCRIPTIONS
-========================================
-
-Copy these descriptions to your GitHub repository settings:
-
-========================================
-SHORT DESCRIPTION (Repository tagline)
+SHORT DESCRIPTION 
 ========================================
 
 🔗 Modern Link Checker for Blogspot sites with local Node.js server - 100% accurate results!
 
+
 ========================================
-DETAILED DESCRIPTION (About section)
+DETAILED DESCRIPTION 
 ========================================
 
 ## 🔗 Blogspot Link Checker - Server Edition
@@ -50,23 +44,3 @@ npm start
 - SEO specialists
 - Web developers
 
-### 📊 Results
-- Before: 800 links → 800 "broken" (false results)
-- After: 800 links → 5-10 actually broken (100% accurate)
-
-========================================
-TOPICS/TAGS (for discoverability)
-========================================
-
-blogspot, link-checker, nodejs, web-scraping, seo-tools, content-management, blogger-tools, website-audit, broken-links, cors-free
-
-========================================
-HOW TO ADD TO GITHUB
-========================================
-
-1. Go to your repository: https://github.com/DeyanShahov/Linck-Checker
-2. Click "Settings" tab
-3. In "General" section, find "Description"
-4. Paste the SHORT DESCRIPTION above
-5. In "About" section (right sidebar on main repo page), paste the DETAILED DESCRIPTION
-6. Add topics/tags for better discoverability
