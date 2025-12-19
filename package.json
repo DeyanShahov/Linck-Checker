@@ -1,0 +1,31 @@
+{
+  "name": "blogspot-link-checker-server",
+  "version": "1.0.0",
+  "description": "Blogspot link checker with local Node.js server for accurate link validation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Test the server by opening link-checker-server.html in your browser\""
+  },
+  "keywords": [
+    "link-checker",
+    "blogspot",
+    "node.js",
+    "express",
+    "cors-free"
+  ],
+  "author": "Link Checker Tool",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  }
+}
