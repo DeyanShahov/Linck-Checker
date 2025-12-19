@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "test": "echo \"Test the server by opening link-checker-server.html in your browser\""
+    "test": "echo \"Test the server by opening index.html in your browser\""
   },
   "keywords": [
     "link-checker",

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogspot Link Checker - Server Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Blogspot Link Checker - Server Edition</h1>
+            <p class="subtitle">Проверка на всички линкове от Blogspot сайт чрез локален Node.js сървър</p>
+            <div id="server-status" class="server-status offline">
+                <span id="status-icon">⭕</span>
+                <span id="status-text">Проверка на сървър...</span>
+            </div>
+        </header>
+
+        <div id="message-container"></div>
+
+        <section class="control-panel">
+            <div class="url-input-group">
+                <input type="url" id="blogspot-url" class="url-input"
+                       placeholder="https://your-blog.blogspot.com"
+                       value="https://www.lichna-prizma.eu/">
+                <button id="check-btn" class="btn btn-primary">🔍 Провери линковете</button>
+            </div>
+
+            <div class="controls-row">
+                <button id="refresh-broken-btn" class="btn btn-secondary hidden">🔄 Обнови счупените</button>
+                <button id="copy-broken-btn" class="btn btn-secondary hidden">📋 Копирай счупените</button>
+                <button id="clear-btn" class="btn btn-secondary">🗑️ Изчисти</button>
+            </div>
+        </section>
+
+        <!-- ANALYSIS SECTION - Shows link overview before checking -->
+        <section id="analysis-section" class="analysis-section hidden">
+            <div class="analysis-header">
+                <h3>📋 НАМЕРЕНИ ЛИНКОВЕ</h3>
+                <p class="analysis-subtitle">Изберете кои типове линкове искате да проверите</p>
+            </div>
+
+            <div class="link-summary">
+                <div class="summary-total">
+                    <div class="total-number" id="analysis-total">0</div>
+                    <div class="total-label">Общо линкове</div>
+                </div>
+
+                <div class="summary-breakdown" id="analysis-breakdown">
+                    <!-- Link type counts will be populated here -->
+                </div>
+            </div>
+
+            <div class="type-selection">
+                <h4>🎯 Изберете типове за проверка:</h4>
+                <div class="type-buttons" id="type-buttons">
+                    <button class="type-btn selected" data-type="all">
+                        ✅ Всички линкове
+                        <span class="type-count" id="type-count-all">0</span>
+                    </button>
+                    <button class="type-btn" data-type="image">
+                        🖼️ Изображения
+                        <span class="type-count" id="type-count-image">0</span>
+                    </button>
+                    <button class="type-btn" data-type="video">
+                        🎬 Видео
+                        <span class="type-count" id="type-count-video">0</span>
+                    </button>
+                    <button class="type-btn" data-type="webpage">
+                        🌐 Уеб страници
+                        <span class="type-count" id="type-count-webpage">0</span>
+                    </button>
+                    <button class="type-btn" data-type="document">
+                        📄 Документи
+                        <span class="type-count" id="type-count-document">0</span>
+                    </button>
+                    <button class="type-btn" data-type="youtube">
+                        🎥 YouTube
+                        <span class="type-count" id="type-count-youtube">0</span>
+                    </button>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="start-checking-btn" class="btn btn-primary">🚀 Започни проверка</button>
+                    <button id="restart-analysis-btn" class="btn btn-secondary">🔄 Избери отново</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats-section" class="hidden">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-count">0</div>
+                    <div class="stat-label">Общо линкове</div>
+                </div>
+                <div class="stat-card stat-success">
+                    <div class="stat-number" id="success-count">0</div>
+                    <div class="stat-label">Работещи</div>
+                </div>
+                <div class="stat-card stat-error">
+                    <div class="stat-number" id="error-count">0</div>
+                    <div class="stat-label">Счупени</div>
+                </div>
+                <div class="stat-card stat-warning">
+                    <div class="stat-number" id="pending-count">0</div>
+                    <div class="stat-label">Проверяват се</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="progress-section" class="progress-section hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Подготовка...</div>
+        </section>
+
+        <section id="results-section" class="results-section hidden">
+            <div class="results-header">
+                <h3>Резултати от проверката</h3>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">📋 Всички</button>
+                    <button class="filter-btn" data-filter="success">✅ Работещи</button>
+                    <button class="filter-btn" data-filter="error">❌ Счупени</button>
+                    <button class="filter-btn" data-filter="pending">⏳ Проверяват се</button>
+                    <span class="filter-separator">|</span>
+                    <button class="filter-btn" data-filter="image">🖼️ Изображения</button>
+                    <button class="filter-btn" data-filter="video">🎬 Видео</button>
+                    <button class="filter-btn" data-filter="webpage">🌐 Уеб страници</button>
+                    <button class="filter-btn" data-filter="document">📄 Документи</button>
+                    <button class="filter-btn" data-filter="youtube">🎥 YouTube</button>
+                </div>
+            </div>
+            <div class="results-list" id="results-list"></div>
+            <div class="pagination" id="pagination-controls" style="display: none; padding: 15px; text-align: center; border-top: 1px solid var(--border);">
+                <button id="prev-page" class="btn btn-secondary" style="margin-right: 10px;">⬅️ Предишна</button>
+                <span id="page-info" style="margin: 0 15px;">Страница 1 от 1</span>
+                <button id="next-page" class="btn btn-secondary" style="margin-left: 10px;">Следваща ➡️</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript modules in correct order -->
+    <script src="config.js"></script>
+    <script src="api.js"></script>
+    <script src="link-parser.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
